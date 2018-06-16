@@ -39,7 +39,7 @@ var model = {
 
 var Octopus = {
 
-    init: function() { debugger
+    init: function() { 
         model.currentCat = model.cats[0];
         View.init();
         listView.init();
@@ -54,11 +54,11 @@ var Octopus = {
     },
 
     addToCounter: function() {
-        model.currentCat.clickCount + 1;
+        model.currentCat.clickCount++;
         View.render();
     },
 
-    setCat: function() {
+    setCat: function(cat) {
         model.currentCat = cat;
     }
 
