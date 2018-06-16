@@ -4,7 +4,9 @@
 
 var model = {
 
-    // object with different cats starts here
+    
+    // list of different cats starts here
+    currentCat: null,
 
     cats: [
         {
@@ -30,163 +32,110 @@ var model = {
             imgSrc: 'img/alfred.png',
             clickCount: 0, 
         },
-
-    ]
-
-
-}
-
-function triggering() {
-    for (i = 0; i < model.cats.length;   i++) {
-        window.onclick = document.getElementById('imgContainer').src = model.cats[i].imgSrc;
-        i++;
-    }
         
-}
+    ],
 
-/*
+};
 
-function sayMyName() {
-    for (i = 0; i < model.cats.length; i++) {
-        catList = model.cats[i];
-        elem = document.getElementById('nameContainer');
-        elem.textContent = cat.name;
+var Octopus = {
 
-    }
-   window.onload = this.elem.appendChild(elem);
+    init: function() { debugger
+        model.currentCat = model.cats[0];
+        View.init();
+        listView.init();
+    },
 
-}*/
+    getAllCats: function(){
+        return model.cats;
+    },
 
-//window.onload = document.getElementById('imgContainer').src = model.cats[1].imgSrc;
-window.onload = document.getElementById('nameContainer').innerText = model.cats[1].name;
-window.onload = document.getElementById('counterContainer').innerText = model.cats[1].clickCount;
+    getCat: function() {
+        return model.currentCat;
+    },
 
+    addToCounter: function() {
+        model.currentCat.clickCount + 1;
+        View.render();
+    },
 
-// event listener 
-
-
-
- function makeList() {
-    for (i = 0; i < model.cats.length;   i++) {
-        let li = document.createElement("li");
-        document.getElementById('catList').appendChild(li);
-        li.innerText = model.cats[i].name;
-
- }
-       i++;
+    setCat: function() {
+        model.currentCat = cat;
     }
 
-
-    
-
- function printPics() { // prints pics! 
-    for (i = 0; i < model.cats.length; i++) {
-        let img = document.createElement("img");
-        img.setAttribute("src", model.cats[i].imgSrc);
-        img.setAttribute("id", model.cats[i].name);
-        img.setAttribute("width", 100);
-        img.setAttribute("height", 100);
-        document.getElementById('imgDiv').appendChild(img);
- }
-       i++;
-/*
-        const element = document.querySelectorAll('.imgDiv').children;
-        for (i = 0; i < element.length; i++) {
-        element.addEventListener('click', function() {
-            document.getElementById('imgContainer').
-        })
-    }*/
-        
-    }
-
-    function addEv() { // adds click event to every cat
-    for (i = 0; i < model.cats.length;   i++) {
-        const element = document.getElementById('imgDiv').children;
-        element[i].addEventListener('click', function() {
-            let catWindow = document.getElementById('imgContainer');
-            catWindow.setAttribute("src", 'model.cats.imgSrc[1]')
-            console.log('hi') // replace with action to print the cat bigger
-        })
-    }
-}
-
-
-
-
-
-
-
-//});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-
-// OCTOPUS
-// on click it fetches the image and the info and it renders it 
-
-
-function myFunction() {
-
-    for (var i = 0; i < model.cats.length; i++) {
-        
-        document.getElementById("catPic").src = model.cats[i].imgSrc;
-       
-        i++;
-        
-    }
-   
     
 }
 
 
-var el = document.getElementById('catPic');
+var View = {
+    
+    init: function() {
+        // aca va todo lo que agarra las cosas del dom
+        this.catImg = document.getElementById('cat-img');
+        this.catName = document.getElementById('cat-name');
+        this.catCount = document.getElementById('cat-count');
 
-el.addEventListener('click', function() {
-    for (var i = 0; i < model.cats.length; i++) {
-        
-        el.src = model.cats[1].imgSrc;       
-        i++;
-        
-    }
-});
+        this.catImg.addEventListener('click', function() {
+            Octopus.addToCounter();
+        });
 
+        this.render();
 
+    },
 
-
-// VIEW
-
-// catViewer -> div with the info and pic of the cat selected (text, img, name)
-// catSelector -> list of cats that you can click (names)
-
-var view = {
+    
 
     render: function() {
-    catSelector = document.getElementsByClassName('catSelector');
+        // aca va todo lo que modifica el dom en si mismo, conectandose con el octopus
+        var currentCat = Octopus.getCat();
+        this.catImg.src = currentCat.imgSrc;
+        this.catName.textContent = currentCat.name;
+        this.catCount.textContent = currentCat.clickCount;
+    }
 
-    catViewer = document.getElementsByClassName('catViewer'); 
+}
 
-    catSelector.innerHTML = selectedCat;
-    catViewer.innerHTML = '';
+var listView = {
+ 
+
+    init: function(){
+        this.catList = document.getElementById('cat-list');
+        this.render();
+    },
+
+    render: function(){
+
+        var cat, item, i;
+        
+        var cats = Octopus.getAllCats();
+
+        this.catList.innerHTML = '';
+
+        for (i=0; i < cats.length; i++){ 
+
+            cat = cats[i];
+            
+            item = document.createElement('li');
+            
+            item.textContent = cat.name;
+            
+            item.addEventListener('click', (function(catCopy) { 
+                return function() {
+                    Octopus.setCat(catCopy);
+                    View.render();
+                };
+            })(cat));
+
+            this.catList.appendChild(item); // check where this goes 
+            
+
+
+        }
+        
 
     }
 
 
 
+};
 
-}
-
-
-
-*/
+Octopus.init();
