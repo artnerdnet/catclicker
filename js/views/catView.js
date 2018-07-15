@@ -20,11 +20,9 @@ const View = {
         this.catName.textContent = currentCat.name;
         this.catCount.textContent = currentCat.clickCount;
     }
-    
 }
 
 const listView = {
-
     init: function(){
         this.catList = document.getElementById('cat-list');
         this.render();
@@ -53,10 +51,9 @@ const listView = {
         }
 
         for(cat of cats) {
-
+            
             displayCatName();
             renderCatOnClick();
-
 
             this.catList.appendChild(item); // check where this goes 
         }
