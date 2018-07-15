@@ -24,8 +24,7 @@ const View = {
 }
 
 const listView = {
- 
-
+    
     init: function(){
         this.catList = document.getElementById('cat-list');
         this.render();
