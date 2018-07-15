@@ -38,26 +38,25 @@ const listView = {
         let cats = Octopus.getAllCats();
 
         this.catList.innerHTML = '';
-
-        for (i=0; i < cats.length; i++){ 
-
-            cat = cats[i];
+        
+        for(cat of cats) {
             
             item = document.createElement('li');
             item.textContent = cat.name;
-            
+                    
             item.addEventListener('click', (function(catCopy) { 
+                
                 return function() {
                     Octopus.setCat(catCopy);
                     View.render();
                 };
-                
+                        
             })(cat));
 
             this.catList.appendChild(item); // check where this goes 
         }
     }
-};
+}
 
 listView.init();
 View.init();
