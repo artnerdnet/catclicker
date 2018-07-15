@@ -1,5 +1,4 @@
 const View = {
-    
     init: function() {
         // aca va todo lo que agarra las cosas del dom
         this.catImg = document.getElementById('cat-img');
@@ -13,9 +12,7 @@ const View = {
         this.render();
 
     },
-
     
-
     render: function() {
         // aca va todo lo que modifica el dom en si mismo, conectandose con el octopus
         let currentCat = Octopus.getCat();
@@ -23,7 +20,7 @@ const View = {
         this.catName.textContent = currentCat.name;
         this.catCount.textContent = currentCat.clickCount;
     }
-
+    
 }
 
 const listView = {
@@ -35,7 +32,7 @@ const listView = {
     },
 
     render: function(){
-
+        
         let cat, item, i;
         
         let cats = Octopus.getAllCats();
@@ -47,7 +44,6 @@ const listView = {
             cat = cats[i];
             
             item = document.createElement('li');
-            
             item.textContent = cat.name;
             
             item.addEventListener('click', (function(catCopy) { 
@@ -55,19 +51,12 @@ const listView = {
                     Octopus.setCat(catCopy);
                     View.render();
                 };
+                
             })(cat));
 
             this.catList.appendChild(item); // check where this goes 
-            
-
-
         }
-        
-
     }
-
-
-
 };
 
 listView.init();
