@@ -18,7 +18,7 @@ const View = {
 
     render: function() {
         // aca va todo lo que modifica el dom en si mismo, conectandose con el octopus
-        var currentCat = Octopus.getCat();
+        let currentCat = Octopus.getCat();
         this.catImg.src = currentCat.imgSrc;
         this.catName.textContent = currentCat.name;
         this.catCount.textContent = currentCat.clickCount;
@@ -36,9 +36,9 @@ const listView = {
 
     render: function(){
 
-        var cat, item, i;
+        let cat, item, i;
         
-        var cats = Octopus.getAllCats();
+        let cats = Octopus.getAllCats();
 
         this.catList.innerHTML = '';
 
