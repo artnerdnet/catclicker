@@ -24,7 +24,7 @@ const View = {
 }
 
 const listView = {
-    
+
     init: function(){
         this.catList = document.getElementById('cat-list');
         this.render();
@@ -38,19 +38,25 @@ const listView = {
 
         this.catList.innerHTML = '';
         
-        for(cat of cats) {
-            
-            item = document.createElement('li');
-            item.textContent = cat.name;
-                    
+        let renderCatOnClick = () => {
             item.addEventListener('click', (function(catCopy) { 
-                
                 return function() {
                     Octopus.setCat(catCopy);
                     View.render();
                 };
-                        
             })(cat));
+        }
+
+        let displayCatName = () => {
+            item = document.createElement('li');
+            item.textContent = cat.name;
+        }
+
+        for(cat of cats) {
+
+            displayCatName();
+            renderCatOnClick();
+
 
             this.catList.appendChild(item); // check where this goes 
         }
