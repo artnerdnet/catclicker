@@ -1,5 +1,4 @@
 const Octopus = {
-
     init: function() { 
         model.currentCat = model.cats[0];
         View.init();
@@ -21,9 +20,7 @@ const Octopus = {
 
     setCat: function(cat) {
         model.currentCat = cat;
-    }
-
-    
+    }   
 }
 
 Octopus.init();
