@@ -1,5 +1,5 @@
 const View = {
-    init: function() {
+    let init = () => {
         // aca va todo lo que agarra las cosas del dom
         this.catImg = document.getElementById('cat-img');
         this.catName = document.getElementById('cat-name');
@@ -23,12 +23,12 @@ const View = {
 }
 
 const listView = {
-    init: function(){
+    let init = () => { 
         this.catList = document.getElementById('cat-list');
         this.render();
     },
 
-    render: function(){
+    let render = () => {
         
         let cat, item, i;
         
