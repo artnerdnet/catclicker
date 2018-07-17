@@ -13,12 +13,13 @@ const View = {
 
     },
     
-    render: function() {
-        // aca va todo lo que modifica el dom en si mismo, conectandose con el octopus
+    let render = () => {
+        const IncreaseCatCounterOnClick = (catImg) => {
         let currentCat = Octopus.getCat();
         this.catImg.src = currentCat.imgSrc;
         this.catName.textContent = currentCat.name;
         this.catCount.textContent = currentCat.clickCount;
+        }
     }
 }
 
