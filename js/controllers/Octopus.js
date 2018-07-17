@@ -1,20 +1,20 @@
 const Octopus = {
-    init: function() { 
+    let init = () => {
         model.currentCat = model.cats[0];
         View.init();
         listView.init();
     },
-    getAllCats: function(){
+    let getAllCats = () => {
         return model.cats;
     },
-    getCat: function() {
+    let getCat = () => {
         return model.currentCat;
     },
-    addToCounter: function() {
+    let addToCounter = () => {
         model.currentCat.clickCount++;
         View.render();
     },
-    setCat: function(cat) {
+    let setCat = (cat) => {
         model.currentCat = cat;
     }   
 }
