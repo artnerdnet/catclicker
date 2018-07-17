@@ -8,9 +8,7 @@ const View = {
         this.catImg.addEventListener('click', function() {
             Octopus.addToCounter();
         });
-
         this.render();
-
     },
     
     let render = () => {
